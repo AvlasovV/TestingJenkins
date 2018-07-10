@@ -1,3 +1,4 @@
+import pytest
 import time
 import selenium.common
 from selenium import webdriver
@@ -6,8 +7,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 
+# def test_simple_math():
+#     p = 3 * 6
+#     b = 6 * 3
+#     assert p == b
+# test_simple_math()
+
 #just for security add txt-file and we shouldn't push it into the repo
-with open("password.txt", "r") as file:
+with open(r"D:\Aulasau_U\PycharmProjects\TasksForStudy\TryingSelenium\venv\password.txt", "r") as file:
     array = [row.strip() for row in file]
 login = array[0]
 password = array[1]
@@ -48,7 +55,7 @@ try:
         if driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[3]/table").is_enabled():
             print("We found something")
     except(selenium.common.exceptions.NoSuchElementException):
-        print("No results found")1231231
+        print("No results found")
 
     print("ending test")
 finally:
