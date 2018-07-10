@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 
-
+#just for security add txt-file and we shouldn't push it into the remote repo
 with open("password.txt", "r") as file:
     array = [row.strip() for row in file]
 login = array[0]
