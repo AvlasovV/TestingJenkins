@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 
-#just for security add txt-file and we shouldn't push it into the remote repo
+#just for security add txt-file and we shouldn't push it into the repo
 with open("password.txt", "r") as file:
     array = [row.strip() for row in file]
 login = array[0]
@@ -48,7 +48,7 @@ try:
         if driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[3]/table").is_enabled():
             print("We found something")
     except(selenium.common.exceptions.NoSuchElementException):
-        print("No results found")
+        print("No results found")1231231
 
     print("ending test")
 finally:
