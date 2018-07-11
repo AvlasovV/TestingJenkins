@@ -9,7 +9,7 @@ from selenium.webdriver.common.keys import Keys
 
 # def test_simple_math():
 #     p = 3 * 6
-#     b = 6 * 3
+#     b = 6 * 4
 #     assert p == b
 # test_simple_math()
 
@@ -20,6 +20,18 @@ login = array[0]
 password = array[1]
 
 NAME = "Aulasau"
+
+
+def test_checking_name(name):
+    elem = driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[1]/div[1]/div/input")
+    elem.send_keys(name)
+    elem.click()
+    assert driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[3]/table").is_enabled()
+    # try:
+    #     if driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[3]/table").is_enabled():
+    #         print("We found something")
+    # except(selenium.common.exceptions.NoSuchElementException):
+    #     print("No results found")
 
 driver = webdriver.Chrome("D:\DOWNLOADS\chromedriver.exe")
 try:
@@ -46,16 +58,17 @@ try:
     elem = driver.find_element_by_xpath(".//*[@id='banner']/div/div[2]/div/div[2]/ul/li[2]/ul/li[2]/a")
     elem.click()
 
-    elem = driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[1]/div[1]/div/input")
 
-    elem.send_keys(NAME)
-    elem = driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[1]/div[3]/button")
-    elem.click()
-    try:
-        if driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[3]/table").is_enabled():
-            print("We found something")
-    except(selenium.common.exceptions.NoSuchElementException):
-        print("No results found")
+    test_checking_name(NAME)
+    # elem = driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[1]/div[1]/div/input")
+    # elem.send_keys(NAME)
+    # elem = driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[1]/div[3]/button")
+    # elem.click()
+    # try:
+    #     if driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[3]/table").is_enabled():
+    #         print("We found something")
+    # except(selenium.common.exceptions.NoSuchElementException):
+    #     print("No results found")
 
     print("ending test")
 finally:
