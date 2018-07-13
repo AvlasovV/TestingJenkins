@@ -66,11 +66,12 @@ try:
     elem = driver.find_element_by_xpath(".//*[@id='banner']/div/div[2]/div/div[2]/ul/li[2]/ul/li[2]/a")
     elem.click()
 
-    print("We search " + args.searchName.encode("utf-8").decode("cp1251"))
-    print(sys.stdout.encoding)
+    # print("We search " + args.searchName.encode("utf-8").decode("cp1251"))
+    # print(sys.stdout.encoding)
     elem = driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[1]/div[1]/div/input")
 
-    elem.send_keys(args.searchName.encode("utf-8").decode(sys.stdout.encoding))
+    # elem.send_keys(args.searchName.encode("utf-8").decode(sys.stdout.encoding))
+    elem.send_keys(args.searchName)
 
     elem = driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[1]/div[3]/button")
     driver.execute_script("arguments[0].click();", elem)
@@ -83,11 +84,9 @@ try:
 
             for i in elements:
                 str = i.text
-                print(str)
                 if ((" " + args.searchName + " ").upper() in str.upper()) or ((args.searchName + " ").upper() in str.upper()):
                     print("We found:", end=" ")
                     print(str)
-                # print(str)
 
     except(selenium.common.exceptions.NoSuchElementException):
         print("No results found")
