@@ -7,6 +7,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from pprint import pprint
+import sys
 
 # just for security add txt-file and we shouldn't push it into the repo
 
@@ -65,9 +66,12 @@ try:
     elem = driver.find_element_by_xpath(".//*[@id='banner']/div/div[2]/div/div[2]/ul/li[2]/ul/li[2]/a")
     elem.click()
 
-
+    print("We search " + args.searchName.encode("utf-8").decode("cp1251"))
+    print(sys.stdout.encoding)
     elem = driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[1]/div[1]/div/input")
-    elem.send_keys(args.searchName)
+
+    elem.send_keys(args.searchName.encode("utf-8").decode(sys.stdout.encoding))
+
     elem = driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[1]/div[3]/button")
     driver.execute_script("arguments[0].click();", elem)
 
@@ -76,8 +80,10 @@ try:
         if driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[3]/table").is_enabled():
             elements = driver.find_elements_by_xpath("//div[@class='page-wrapper']//tbody//tr[*]")
             print(elements.__len__())
+
             for i in elements:
                 str = i.text
+                print(str)
                 if ((" " + args.searchName + " ").upper() in str.upper()) or ((args.searchName + " ").upper() in str.upper()):
                     print("We found:", end=" ")
                     print(str)
