@@ -41,7 +41,8 @@ def input_from_cmd():
 
 args = input_from_cmd()
 
-driver = webdriver.Chrome("D:\DOWNLOADS\chromedriver.exe")
+# driver = webdriver.Chrome("D:\DOWNLOADS\chromedriver.exe")
+driver = webdriver.Firefox(executable_path=r"D:\DOWNLOADS\geckodriver.exe")
 try:
     wait = WebDriverWait(driver,10)
     driver.implicitly_wait(10)
@@ -54,23 +55,24 @@ try:
     a = driver.switch_to_active_element()
 
     elem = driver.find_element_by_xpath(".//*[@id='_com_liferay_login_web_portlet_LoginPortlet_login']")
+    elem.clear()
     elem.send_keys(args.login)
     elem = driver.find_element_by_id("_com_liferay_login_web_portlet_LoginPortlet_password")
     elem.send_keys(args.password)
     elem.submit()
 
-    time.sleep(5)
-
-    elem = driver.find_element_by_xpath(".//*[@id='banner']/div/div[2]/div/div[2]/ul/li[2]/a")
-    elem.click()
-    elem = driver.find_element_by_xpath(".//*[@id='banner']/div/div[2]/div/div[2]/ul/li[2]/ul/li[2]/a")
+    time.sleep(3)
+    elem = driver.find_element_by_xpath("//ul[@class='nav navbar-nav']//li[2]//a[1]//i[1]")
     elem.click()
 
-    # print("We search " + args.searchName.encode("utf-8").decode("cp1251"))
-    # print(sys.stdout.encoding)
+    time.sleep(1)
+    elem = driver.find_element_by_xpath("//a[@href='https://portal.iba.by/web/guest/poisk-sotrudnikov']")
+    elem.click()
+
+
+
     elem = driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[1]/div[1]/div/input")
 
-    # elem.send_keys(args.searchName.encode("utf-8").decode(sys.stdout.encoding))
     elem.send_keys(args.searchName)
 
     elem = driver.find_element_by_xpath(".//*[@id='_SearchPerson_INSTANCE_6NvxyekxSIB6_']/div/div[1]/div[3]/button")
@@ -95,4 +97,4 @@ try:
 finally:
     time.sleep(3)
     driver.close()
-    driver.quit()
+    # driver.quit()
